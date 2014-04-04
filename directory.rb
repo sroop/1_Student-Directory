@@ -20,13 +20,23 @@ students = [
 "Joey Wolf",
 "Julie Walker"
 ]
-
-puts "The students of my cohort at Makers Academy"
-puts "----------------------"
-# and then printing the list of students below by using the each method to iterate over each student in the array
-students.each do |student|
-	puts student
+# creating three methods below
+def print_header
+	puts "The students of my cohort at Makers Academy"
+	puts "----------------------"
 end
 
-# printing the total count using the length method on the array
-puts "Overall, we have #{students.length} great students"
+def print(names)
+	names.each do |name|
+		puts name
+	end
+end
+
+def print_footer(names)
+	puts "Overall, we have #{names.length} great students"
+end
+
+# calling the methods and passing through students array as the argument
+print_header
+print(students)
+print_footer(students)
