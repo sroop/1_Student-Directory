@@ -20,7 +20,26 @@ students = [
 { name: "Joey Wolf", cohort: :march},
 { name: "Julie Walker", cohort: :march},
 ]
-# creating three methods below
+# creating methods below
+def input_students
+	puts "Please enter the student names: "
+	puts "To finish, just hit return twice"
+	# creating an empty students array which will override the array above
+	students = []
+	#get the first name
+	name = gets.chomp
+	#while the name is not empty, repeat this code
+	while !name.empty? do
+		# add the student hash to the array
+		students << { name: name, cohort: :march }
+		puts "Now we have #{students.length} students"
+		# get another name from the user
+		name = gets.chomp
+	end
+	#  return the array of students
+	students
+end
+
 def print_header
 	puts "The students of my cohort at Makers Academy"
 	puts "----------------------"
@@ -37,6 +56,7 @@ def print_footer(names)
 end
 
 # calling the methods and passing through students array as the argument
+students = input_students
 print_header
 print(students)
 print_footer(students)
