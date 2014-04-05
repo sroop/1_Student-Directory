@@ -34,6 +34,7 @@ def input_students
 		students << { name: name, cohort: :march }
 		puts "Now we have #{students.length} students"
 		# get another name from the user
+		puts "Student Name:"
 		name = gets.chomp
 	end
 	#  return the array of students
@@ -47,7 +48,9 @@ end
 
 def formatting(students)
 	students.each_with_index do |student, index|
+		if student[:name].chars.first == "S"
 		puts " #{index+1}. #{student[:name]} (#{student[:cohort]} cohort)"
+		end
 	end
 end
 
