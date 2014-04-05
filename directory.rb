@@ -49,6 +49,7 @@ end
 def formatting(students)
 	puts "Type in a letter to display names starting with that letter:"
 	letter = gets.chomp
+	print_header
 	students.each_with_index do |student, index|
 		if student[:name].chars.first == letter
 		puts " #{index+1}. #{student[:name]} (#{student[:cohort]} cohort)"
@@ -62,6 +63,6 @@ end
 
 # calling the methods and passing through students array as the argument
 students = input_students
-print_header
+# print_header
 formatting(students)
 print_footer(students)
