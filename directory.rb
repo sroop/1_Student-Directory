@@ -22,8 +22,7 @@ students = [
 ]
 # creating methods below
 def input_students
-	puts "Please enter the student names: "
-	puts "To finish, just hit return twice"
+	print "Please enter the student names: \nTo finish, just hit return twice\n"
 	# creating an empty students array which will override the array above
 	students = []
 	#get the first name
@@ -45,7 +44,7 @@ def print_header
 	puts "----------------------"
 end
 
-def print(students)
+def formatting(students)
 	students.each do |student|
 		puts "#{student[:name]} (#{student[:cohort]} cohort)"
 	end
@@ -58,5 +57,5 @@ end
 # calling the methods and passing through students array as the argument
 students = input_students
 print_header
-print(students)
+formatting(students)
 print_footer(students)
