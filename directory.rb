@@ -24,11 +24,12 @@ def print_header
 	puts "----------------------"
 end
 
-# trying out the while method to loop through and print student names
-# instead of using the much better each method that's commented out below
+# trying out the until method to loop through and print student names
+# opposite of the while loop, conditions must be false in order to run the loop.
+# loop breaks when conditions match true. the while loop is the opposite.
 def display(students)
 	i = 0
-	while students.length > i do
+	until students.length <= i do
 		puts "#{i + 1}. #{students[i][:name]} (#{students[i][:cohort]} cohort)"
 		i += 1
 	end
@@ -36,9 +37,7 @@ end
 
 # def display(students)
 # 	students.each_with_index do |student, index|
-# 		if 	student[:name].length < 12
-# 			puts " #{index+1}. #{student[:name]} (#{student[:cohort]} cohort)"
-# 		end
+# 		puts " #{index+1}. #{student[:name]} (#{student[:cohort]} cohort)"
 # 	end
 # end
 
