@@ -47,8 +47,10 @@ def print_header
 end
 
 def formatting(students)
+	puts "Type in a letter to display names starting with that letter:"
+	letter = gets.chomp
 	students.each_with_index do |student, index|
-		if student[:name].chars.first == "S"
+		if student[:name].chars.first == letter
 		puts " #{index+1}. #{student[:name]} (#{student[:cohort]} cohort)"
 		end
 	end
