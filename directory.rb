@@ -24,13 +24,23 @@ def print_header
 	puts "----------------------"
 end
 
+# trying out the while method to loop through and print student names
+# instead of using the much better each method that's commented out below
 def display(students)
-	students.each_with_index do |student, index|
-		if 	student[:name].length < 12
-			puts " #{index+1}. #{student[:name]} (#{student[:cohort]} cohort)"
-		end
+	i = 0
+	while students.length > i do
+		puts "#{i + 1}. #{students[i][:name]} (#{students[i][:cohort]} cohort)"
+		i += 1
 	end
 end
+
+# def display(students)
+# 	students.each_with_index do |student, index|
+# 		if 	student[:name].length < 12
+# 			puts " #{index+1}. #{student[:name]} (#{student[:cohort]} cohort)"
+# 		end
+# 	end
+# end
 
 def print_footer(names)
 	puts "Overall, we have #{names.length} great students"
