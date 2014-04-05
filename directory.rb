@@ -1,25 +1,3 @@
-# adding the students into an array
-students = [
-{ name: "Steve Musgrave", cohort: :march},
-{ name: "Sroop Sunar", cohort: :march},
-{ name: "Colin Marshall", cohort: :march},
-{ name: "Josh Fail-Brown", cohort: :march},
-{ name: "Louise Lai", cohort: :march},
-{ name: "Robin Doble", cohort: :march},
-{ name: "Alex Wong", cohort: :march},
-{ name: "Scott Dimmock", cohort: :march},
-{ name: "Muhanad Al-Rubaiee", cohort: :march},
-{ name: "Shelley Hope", cohort: :march},
-{ name: "Will Hall", cohort: :march},
-{ name: "Oliver Delevingne", cohort: :march},
-{ name: "Nico", cohort: :march},
-{ name: "Apostolis", cohort: :march},
-{ name: "Stefania", cohort: :march},
-{ name: "Robert Leon", cohort: :march},
-{ name: "Emma Williams", cohort: :march},
-{ name: "Joey Wolf", cohort: :march},
-{ name: "Julie Walker", cohort: :march},
-]
 # creating methods below
 def input_students
 	print "Instructions:\nPlease enter the student names.\nThen to finish, just hit return twice!\n\n"
@@ -46,13 +24,15 @@ def print_header
 	puts "----------------------"
 end
 
-def formatting(students)
-	puts "Type in a letter to display names starting with that letter:"
+def display(students)
+	puts "Type in a letter to display names starting with that letter,\nOr type 'all' to see the full list:"
 	letter = gets.chomp
 	print_header
 	students.each_with_index do |student, index|
-		if student[:name].chars.first == letter
-		puts " #{index+1}. #{student[:name]} (#{student[:cohort]} cohort)"
+		if letter == "all"
+			puts "#{index+1}. #{student[:name]} (#{student[:cohort]} cohort)"
+		elsif student[:name].chars.first == letter
+			puts " #{index+1}. #{student[:name]} (#{student[:cohort]} cohort)"
 		end
 	end
 end
@@ -63,6 +43,5 @@ end
 
 # calling the methods and passing through students array as the argument
 students = input_students
-# print_header
-formatting(students)
+display(students)
 print_footer(students)
