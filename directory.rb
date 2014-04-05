@@ -25,13 +25,8 @@ def print_header
 end
 
 def display(students)
-	puts "Type in a letter to display names starting with that letter,\nOr type 'all' to see the full list:"
-	letter = gets.chomp
-	print_header
 	students.each_with_index do |student, index|
-		if letter == "all"
-			puts "#{index+1}. #{student[:name]} (#{student[:cohort]} cohort)"
-		elsif student[:name].chars.first == letter
+		if 	student[:name].length < 12
 			puts " #{index+1}. #{student[:name]} (#{student[:cohort]} cohort)"
 		end
 	end
@@ -43,5 +38,6 @@ end
 
 # calling the methods and passing through students array as the argument
 students = input_students
+print_header
 display(students)
 print_footer(students)
