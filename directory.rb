@@ -1,4 +1,5 @@
-students = [
+# refering to students variable inside of methods so must use @
+@students = [
 {first_name: "Sroop", last_name: "Sunar", cohort: "March"}
 ]
 
@@ -13,7 +14,6 @@ def options
 end
 
 def add_student
-	students = []
 	puts "Enter the first name:"
 	first_name = gets.chomp
 		while !first_name.empty? do
@@ -29,13 +29,13 @@ def add_student
 					puts "You need to enter a cohort!"
 					cohort = gets.chomp
 				end
-			students << { first_name: first_name, last_name: last_name, cohort: cohort }
-			puts "Now we have #{students.length} students"
+			@students << { first_name: first_name, last_name: last_name, cohort: cohort }
+			puts "Now we have #{@students.length} students"
 			# get another name from the user
 			puts "Next student! Enter the first name:"
 			first_name = gets.chomp
 		end
-	students
+	@students
 end
 
 def edit_student
@@ -103,17 +103,15 @@ end
 
 case options
 	when "add"
-		# add option currently not running ok when the empty array is commented out.
-		# won't shovel user input into the existing student array outside of the methods
 		add_student
 		print_header
-		display(students)
-		print_footer(students)
+		display(@students)
+		print_footer(@students)
 	when "list"
 		# list running ok
 		print_header
-		display(students)
-		print_footer(students)
+		display(@students)
+		print_footer(@students)
 	else nil
 		exit
 end
