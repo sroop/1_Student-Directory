@@ -8,10 +8,10 @@ def options
 	puts "-Type 'edit' to edit a student"
 	puts "-Type 'delete' to delete a student"
 	puts "-Type 'list' to display the full list of students"
+	puts "-Press return to exit"
 	option = gets.chomp
 end
 
-# creating methods below
 def add_student
 	students = []
 	puts "Enter the first name:"
@@ -80,6 +80,10 @@ def edit_student
 		end
 end
 
+def exit
+	puts "bye-bye!"
+end
+
 def print_header
 	puts "The students at Makers Academy".center(60)
 	puts "----------------------".center(60)
@@ -95,19 +99,21 @@ def print_footer(students)
 	puts "Overall, we have #{students.length} great students"
 end
 
-# calling the methods and passing through students array as the argument
-# students = input_students
+
 
 case options
 	when "add"
+		# add option currently not running ok when the empty array is commented out.
+		# won't shovel user input into the existing student array outside of the methods
 		add_student
 		print_header
 		display(students)
-		print_footer
+		print_footer(students)
 	when "list"
+		# list running ok
 		print_header
 		display(students)
 		print_footer(students)
-	else
-		"All done."
+	else nil
+		exit
 end
