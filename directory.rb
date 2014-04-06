@@ -26,13 +26,13 @@ def input_students
 end
 
 def print_header
-	puts "The students of my cohort at Makers Academy"
-	puts "----------------------"
+	puts "The students of my cohort at Makers Academy".center(60)
+	puts "-------------------------------------------".center(60)
 end
 
 def display(students)
 	students.each_with_index do |student, index|
-		puts "#{index+1}. #{student[:first_name]} #{student[:last_name]} (#{student[:cohort]} cohort)"
+		puts "#{index+1}. #{student[:first_name]} #{student[:last_name]} (#{student[:cohort]} cohort)".center(60)
 	end
 end
 
