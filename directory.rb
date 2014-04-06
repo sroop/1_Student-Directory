@@ -1,6 +1,6 @@
 # creating methods below
 def input_students
-	print "Instructions:\nPlease enter the student names.\nThen to finish, just hit return twice!\n\n"
+	print "Instructions:\nPlease enter the student names and cohort.\nThen to finish, just hit return twice!\n\n"
 	# creating an empty students array which will override the array above
 	students = []
 	#get the first name to begin the process
@@ -14,8 +14,14 @@ def input_students
 			puts "You need to enter a last name!"
 			last_name = gets.chomp
 		end
+		puts "Enter the cohort:"
+		cohort = gets.chomp
+		until !cohort.empty? do
+			puts "You need to enter a cohort!"
+			cohort = gets.chomp
+		end
 		# add the student hash to the array
-		students << { first_name: first_name, last_name: last_name, cohort: :march }
+		students << { first_name: first_name, last_name: last_name, cohort: cohort }
 		puts "Now we have #{students.length} students"
 		# get another name from the user
 		puts "Next student! Enter the first name:"
@@ -26,13 +32,13 @@ def input_students
 end
 
 def print_header
-	puts "The students of my cohort at Makers Academy".center(60)
-	puts "-------------------------------------------".center(60)
+	puts "The students at Makers Academy".center(60)
+	puts "----------------------".center(60)
 end
 
 def display(students)
 	students.each_with_index do |student, index|
-		puts "#{index+1}. #{student[:first_name]} #{student[:last_name]} (#{student[:cohort]} cohort)".center(60)
+		puts "#{index+1}. #{student[:first_name]} #{student[:last_name]} (#{student[:cohort]} cohort)"
 	end
 end
 
