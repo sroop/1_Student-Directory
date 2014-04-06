@@ -1,3 +1,16 @@
+students = [
+{first_name: "Sroop", last_name: "Sunar", cohort: "March"}
+]
+
+def options
+	puts "What would you like to do in the directory?"
+	puts "-Type 'add' to add a student"
+	puts "-Type 'edit' to edit a student"
+	puts "-Type 'delete' to delete a student"
+	puts "-Type 'list' to display the full list of students"
+	option = gets.chomp
+end
+
 # creating methods below
 def add_student
 	students = []
@@ -25,20 +38,8 @@ def add_student
 	students
 end
 
-def input_students
-	# asking the user to input an answer
-	puts "What would you like to do in the directory?"
-	puts "-Type 'add' to add a student"
-	puts "-Type 'edit' to edit a student"
-	puts "-Type 'delete' to delete a student"
-	puts "-Type 'list' to display the full list of students"
-	answer = gets.chomp
-	#using the case method to offer options for each answer
-	case answer
-	when "add"
-		add_student
-	when "edit"
-		puts "Enter the name and cohort of the student you'd like to edit."
+def edit_student
+	puts "Enter the name and cohort of the student you'd like to edit."
 		puts "Enter the first name:"
 		first_name = gets.chomp
 		while !first_name.empty? do
@@ -54,33 +55,29 @@ def input_students
 				puts "You need to enter a cohort!"
 				cohort = gets.chomp
 			end
+			return
 		end
 		if first_name == students[:first_name] && last_name == students[:last_name] && cohort == students[:cohort]
 			puts "Student found. Please re-enter the information."
 			puts "Enter the first name:"
 			first_name = gets.chomp
-			while !first_name.empty? do
-				puts "Enter the last name:"
-				last_name = gets.chomp
-				until !last_name.empty? do
-					puts "You need to enter a last name!"
+				while !first_name.empty? do
+					puts "Enter the last name:"
 					last_name = gets.chomp
-				end
-			puts "Enter the cohort:"
-			cohort = gets.chomp
-				until !cohort.empty? do
-					puts "You need to enter a cohort!"
+						until !last_name.empty? do
+							puts "You need to enter a last name!"
+							last_name = gets.chomp
+						end
+					puts "Enter the cohort:"
 					cohort = gets.chomp
+						until !cohort.empty? do
+							puts "You need to enter a cohort!"
+							cohort = gets.chomp
+						end
 				end
-			end
-
 		else
 			puts "Student not found!"
 		end
-
-	when "delete"
-	when "list"
-	end
 end
 
 def print_header
@@ -94,12 +91,23 @@ def display(students)
 	end
 end
 
-def print_footer(names)
-	puts "Overall, we have #{names.length} great students"
+def print_footer(students)
+	puts "Overall, we have #{students.length} great students"
 end
 
 # calling the methods and passing through students array as the argument
-students = input_students
-print_header
-display(students)
-print_footer(students)
+# students = input_students
+
+case options
+	when "add"
+		add_student
+		print_header
+		display(students)
+		print_footer
+	when "list"
+		print_header
+		display(students)
+		print_footer(students)
+	else
+		"All done."
+end
