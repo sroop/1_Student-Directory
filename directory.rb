@@ -41,7 +41,7 @@ end
 
 def ask_details
 	puts "Enter the first name of the student:"
-	gets.chomp
+	first_name = gets.chomp
 end
 
 
