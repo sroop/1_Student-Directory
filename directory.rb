@@ -2,7 +2,7 @@
 @students = [
 {first_name: "Sroop", last_name: "Sunar", cohort: "March"}
 ]
-@student = { first_name: "Sroop", last_name: "Sunar", cohort: "March" }
+
 
 def print_menu
 	puts "What would you like to do in the directory?"
@@ -11,50 +11,61 @@ def print_menu
 	puts "-Type 'delete' to delete a student"
 	puts "-Type 'list' to display the full list of students"
 	puts "-Press return to exit"
-	
 end
 
-def add_student
+def enter_first_name
 	puts "Enter the first name:"
 	first_name = gets.chomp
-		while !first_name.empty? do
-			puts "Enter the last name:"
-			last_name = gets.chomp
-				until !last_name.empty? do
-					puts "You need to enter a last name!"
-					last_name = gets.chomp
-				end
-			puts "Enter the cohort:"
+end
+
+def enter_last_name
+	puts "Enter the last name:"
+	last_name = gets.chomp
+	until !last_name.empty? do
+		puts "You need to enter a last name!"
+		last_name = gets.chomp
+	end
+	last_name
+end
+
+def enter_cohort
+	puts "Enter the cohort:"
+	cohort = gets.chomp
+		until !cohort.empty? do
+			puts "You need to enter a cohort!"
 			cohort = gets.chomp
-				until !cohort.empty? do
-					puts "You need to enter a cohort!"
-					cohort = gets.chomp
-				end
+		end
+	cohort
+end
+
+
+def add_student
+first_name = enter_first_name
+	while !first_name.empty? do
+			last_name = enter_last_name
+			cohort = enter_cohort
 			@student = { first_name: first_name, last_name: last_name, cohort: cohort }
 			@students << @student
 			puts "Now we have #{@students.length} students"
-			puts "Next student! Enter the first name:"
-			first_name = gets.chomp
+			puts "Next student!"
+			first_name = enter_first_name
 		end
 	@students
 end
 
 
 def ask_details
-	puts "Enter the first name of the student:"
-	first_name = gets.chomp
-	puts "Enter the last name:"
-	last_name = gets.chomp
-	puts "Enter the cohort:"
-	cohort = gets.chomp
-	@student = { first_name: first_name, last_name: last_name, cohort: cohort }
+	first_name = enter_first_name
+	last_name = enter_last_name
+	cohort = enter_cohort
+	student_details = { first_name: first_name, last_name: last_name, cohort: cohort }
 end
 
 
 def edit_student
-	ask_details
-	if @students.include?(@student)
-		index = @students.index(@student)
+	student_details = ask_details
+	if @students.include?(student_details)
+		index = @students.index(student_details)
 		puts "Student found!"
 		puts "What do you want to edit?"
 		puts "-Type 1 for first name"
@@ -107,7 +118,7 @@ def neat_summary(students)
 end
 
 
-# option = "kjhk"
+# option = "jibberish jibberish so this isn't empty and the program works"
 # while !option.empty?  do
 # 	print_menu
 # 	option = gets.chomp
@@ -141,21 +152,3 @@ begin
 end while !option.empty? 
 exit
 
-# case options
-# 	when "add"
-# 		add_student
-# 		print_header
-# 		display(@students)
-# 		print_footer(@students)
-# 	when "edit"
-# 		edit_student
-# 		print_header
-# 		display(@students)
-# 		print_footer(@students)
-# 	when "list"
-# 		print_header
-# 		display(@students)
-# 		print_footer(@students)
-# 	else nil
-# 		exit
-# end
