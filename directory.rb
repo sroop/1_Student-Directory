@@ -2,7 +2,6 @@
 @students = [
 {first_name: "Sroop", last_name: "Sunar", cohort: "March"}
 ]
-@student = { first_name: "Sroop", last_name: "Sunar", cohort: "March" }
 
 def print_menu
 	puts "What would you like to do in the directory?"
@@ -30,8 +29,8 @@ def add_student
 					puts "You need to enter a cohort!"
 					cohort = gets.chomp
 				end
-			@student = { first_name: first_name, last_name: last_name, cohort: cohort }
-			@students << @student
+			student = { first_name: first_name, last_name: last_name, cohort: cohort }
+			@students << student
 			puts "Now we have #{@students.length} students"
 			puts "Next student! Enter the first name:"
 			first_name = gets.chomp
@@ -42,22 +41,17 @@ end
 
 def ask_details
 	puts "Enter the first name of the student:"
-	first_name = gets.chomp
-	puts "Enter the last name:"
-	last_name = gets.chomp
-	puts "Enter the cohort:"
-	cohort = gets.chomp
-	@student = { first_name: first_name, last_name: last_name, cohort: cohort }
+	gets.chomp
 end
 
 
 def edit_student
-	ask_details
-	if @students.include?(@student)
-		index = @students.index(@student)
+	student_to_find = ask_details
+	student_to_edit = @students.select {|s| s[:first_name] == student_to_find}.first
+	if !student_to_edit.nil?
 		puts "Student found!"
 		puts "What do you want to edit?"
-		puts "-Type 1 for first name"
+		puts "Type 1 for first name"
 		puts "Type 2 for last name"
 		puts "Type 3 for cohort"
 		puts "Type 4 to exit"
@@ -65,13 +59,13 @@ def edit_student
 		case user_selection
 		when "1" 
 			puts "Enter the first name:"
-			@students[index][:first_name] = gets.chomp
+			student_to_edit[:first_name] = gets.chomp
 		when "2"
 			puts "Enter the last name:"
-			@students[index][:last_name] = gets.chomp
+			student_to_edit[:last_name] = gets.chomp
 		when "3" 
 			puts "Enter the cohort:"
-			@students[index][:cohort] = gets.chomp
+			student_to_edit[:cohort] = gets.chomp
 		when "4"
 			exit
 		else puts "Command not recognised..."
