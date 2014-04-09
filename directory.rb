@@ -1,8 +1,9 @@
 require 'csv'
 
 @students = [
-{first_name: "Andrew", last_name: "Eu", cohort: "January"}
+{first_name: "Sroop", last_name: "Sunar", cohort: "March"}
 ]
+
 @months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
 def save_students
@@ -15,17 +16,18 @@ def save_students
 	file.close
 end
 
-# def load_students
-# 	file = File.open("students.csv", "r")
-# 	files.readlines.each do | line |
-# 		first_name, last_name, cohort = lines.chomp.split(",")
-# 		@students << { first_name: first_name, last_name: last_name, cohort: cohort }
-# 	end
-# 	file.close
-# end
+def load_students
+	file = File.open("./students.csv", "r")
+	file.readlines.each do | line |
+		first_name, last_name, cohort = line.chomp.split(",")
+		@students << { first_name: first_name, last_name: last_name, cohort: cohort }
+	end
+	file.close
+end
 
 def print_menu
 	puts "What would you like to do in the directory?"
+	puts "-Type 'load' to initialise the directory"
 	puts "-Type 'add' to add a student"
 	puts "-Type 'edit' to edit a student"
 	puts "-Type 'delete' to delete a student"
@@ -160,6 +162,8 @@ begin
 	print_menu
 	option = gets.chomp
 	case option
+	when "load"
+		load_students
 	when "add"
 		add_student
 		neat_summary(@students)
