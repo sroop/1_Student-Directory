@@ -92,6 +92,26 @@ def edit_student
 	end
 end
 
+def delete_student
+	student_details = ask_details
+	if @students.include?(student_details)
+		index = @students.index(student_details)
+		puts "Student found!"
+		puts "Are you sure you want to delete?"
+		puts "Type ok to permanently delete the student:"
+		confirm = gets.chomp
+		case confirm
+		when "ok"
+			@students.delete(student_details)
+			puts "Student deleted!"
+		else puts "Command not recognised..."
+		end
+	else
+		puts "Student not found, try again!"
+	end
+end
+
+
 def exit
 	puts "bye-bye!"
 end
@@ -146,6 +166,9 @@ begin
 		neat_summary(@students)
 	when "edit"
 		edit_student
+		neat_summary(@students)
+	when "delete"
+		delete_student
 		neat_summary(@students)
 	when "list"
 		neat_summary(@students)
