@@ -1,8 +1,28 @@
-# refering to students variable inside of methods so must use @
+require 'csv'
+
 @students = [
-{first_name: "Sroop", last_name: "Sunar", cohort: "March"}
+{first_name: "Andrew", last_name: "Eu", cohort: "January"}
 ]
 @months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
+def save_students
+	file = File.open("./students.csv", "w")
+	@students.each do | student |
+		student_data = [student[:first_name], student[:last_name], student[:cohort]]
+		csv_line = student_data.join(",")
+		file.puts csv_line
+	end
+	file.close
+end
+
+# def load_students
+# 	file = File.open("students.csv", "r")
+# 	files.readlines.each do | line |
+# 		first_name, last_name, cohort = lines.chomp.split(",")
+# 		@students << { first_name: first_name, last_name: last_name, cohort: cohort }
+# 	end
+# 	file.close
+# end
 
 def print_menu
 	puts "What would you like to do in the directory?"
@@ -10,6 +30,7 @@ def print_menu
 	puts "-Type 'edit' to edit a student"
 	puts "-Type 'delete' to delete a student"
 	puts "-Type 'list' to display the full list of students"
+	puts "-Type 'save' to save everything you've done in this session"
 	puts "-Press return to exit"
 end
 
@@ -38,7 +59,6 @@ def enter_cohort
 	cohort
 end
 
-
 def add_student
 first_name = enter_first_name
 	while !first_name.empty? do
@@ -53,14 +73,12 @@ first_name = enter_first_name
 	@students
 end
 
-
 def ask_details
 	first_name = enter_first_name
 	last_name = enter_last_name
 	cohort = enter_cohort
 	student_details = { first_name: first_name, last_name: last_name, cohort: cohort }
 end
-
 
 def edit_student
 	student_details = ask_details
@@ -111,7 +129,6 @@ def delete_student
 	end
 end
 
-
 def exit
 	puts "bye-bye!"
 end
@@ -139,24 +156,6 @@ def neat_summary(students)
 end
 
 
-# option = "jibberish jibberish so this isn't empty and the program works"
-# while !option.empty?  do
-# 	print_menu
-# 	option = gets.chomp
-# 	case option
-# 	when "add"
-# 		add_student
-# 		neat_summary(@students)
-# 	when "edit"
-# 		edit_student
-# 		neat_summary(@students)
-# 	when "list"
-# 		neat_summary(@students)
-# 	end
-# end 
-# exit
-
-
 begin
 	print_menu
 	option = gets.chomp
@@ -172,7 +171,29 @@ begin
 		neat_summary(@students)
 	when "list"
 		neat_summary(@students)
+	when "save"
+		save_students
 	end
 end while !option.empty? 
 exit
+
+# option = "jibberish so this isn't empty to allow the program to initialise"
+# while !option.empty?  do
+# 	print_menu
+# 	option = gets.chomp
+# 	case option
+# 	when "add"
+# 		add_student
+# 		neat_summary(@students)
+# 	when "edit"
+# 		edit_student
+# 		neat_summary(@students)
+# 	when "delete"
+# 		delete_student
+# 		neat_summary(@students)
+# 	when "list"
+# 		neat_summary(@students)
+# 	end
+# end 
+# exit
 
