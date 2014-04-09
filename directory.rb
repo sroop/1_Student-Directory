@@ -2,7 +2,7 @@
 @students = [
 {first_name: "Sroop", last_name: "Sunar", cohort: "March"}
 ]
-
+@months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
 def print_menu
 	puts "What would you like to do in the directory?"
@@ -102,7 +102,8 @@ def print_header
 end
 
 def display(students)
-	students.each_with_index do |student, index|
+	sort_by_cohort = @students.sort_by { |student| @months.index(student[:cohort]) }
+	sort_by_cohort.each_with_index do |student, index|
 		puts "#{index+1}. #{student[:first_name]} #{student[:last_name]} (#{student[:cohort]} cohort)"
 	end
 end
