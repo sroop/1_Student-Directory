@@ -66,8 +66,7 @@ first_name = enter_first_name
 	while !first_name.empty? do
 			last_name = enter_last_name
 			cohort = enter_cohort
-			@student = { first_name: first_name, last_name: last_name, cohort: cohort }
-			@students << @student
+			@students << { first_name: first_name, last_name: last_name, cohort: cohort }
 			puts "Now we have #{@students.length} students"
 			puts "Next student!"
 			first_name = enter_first_name
